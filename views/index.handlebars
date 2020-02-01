@@ -1,20 +1,48 @@
-<img src="../../assets/img.jpg" width="200" height="300" id="img">
-
+<div class="picheader">
 <h1>Eat-Da-Burger!</h1>
+<img src="../../assets/img.jpg" width="200" height="300" id="img">
+</div>
+
+<div class="container">
+<div class="row"> 
+  <div class="col-6">
+    
+    <ul>
+      {{#each burgers}}
+       {{#unless devoured}}
+     <li>
+         {{burger_name}}
+
+      {{!-- <div class="form-group"> --}}
+        
+    <button type="submit onclick" class="change-devour" data-id="{{id}}"> Devour!</button>
+  
+    </li>
+             {{/unless}}
+            {{/each}}
+
+    </ul>
+  </div>
+
+    <div class="addedBurgs">
+    <div class="devour-burgs">
+      <h1>Devoured</h1>
+
+    <ul>
+       {{#each burgers}}
+        {{#if devoured}}
+    <li>
+        {{burger_name}}
+     </li>
+        {{/if}}
+       {{/each}}
+      </ul>
+    </div>
+    </div>
+  </div>
 
 {{!-- need to fix the code so that the devoured buttons shows up after a new burger is added, also make it an editable field --}}
-<ul>
-  {{#each burgers}}
-    {{#unless this.devoured}}
-        {{this.id}}. {{this.burger_name}}
-      <div class="form-group">
-    <button type="button" id="devoured" data-id="{{this.id}}"> Devoured!<br>
-  </div>
-    {{/unless}}
-  {{/each}}
 
-   </li>
-</ul>
 
 
 {{!-- create button that says "Devour it!" and be able to press it to add to the devoured list. --}}
@@ -24,10 +52,11 @@
   <div class="form-group">
     <label for="newburger"></label>
     <input type="text" id="newburger" name="burger_name">
+      <button class="submit onclick fred" type="submit">Submit</button>
   </div>
 
  
 {{!-- need to add code so that the submit button adds it to the screen --}}
-  <button type="submit">Submit</button>
-</form>
 <h2>Enter a burger you would love to eat, then Click the "Submit" Button</h2>
+
+</form>

@@ -33,8 +33,8 @@ function objToSql(ob) {
 
 // Object for SQL statement functions. selecting all burgers
 var orm = {
-  selectAll: function(table, cb) {
-    var queryString = "SELECT * FROM " + table + ";";
+  selectAll: function(tableInput, cb) {
+    var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
@@ -42,6 +42,7 @@ var orm = {
       cb(result);
     });
   },
+
  insertOne: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
@@ -50,7 +51,7 @@ var orm = {
     queryString += ") ";
     queryString += "VALUES (";
     queryString += printQMarks(vals.length);
-    queryString += ") ";
+    queryString += ")";
 
     console.log(queryString);
 
@@ -79,23 +80,9 @@ var orm = {
 
       cb(result);
     });
-  },
+    }
+  };
 
-  //delete 
-  deleteOne: function(table, condition, cb) {
-    var queryString = "DELETE FROM " + table;
-    queryString += " WHERE ";
-    queryString += condition;
-
-    connection.query(queryString, function(err, result) {
-      if (err) {
-        throw err;
-      }
-
-      cb(result);
-    });
-  }
-};
 
 // Export the orm object for the model.
 module.exports = orm;
